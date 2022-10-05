@@ -5,6 +5,8 @@ error Flippy__InsufficientWager();
 error Flippy__InsufficientContractFunds();
 error Flippy_PlayerAlreadyInGame();
 error Flippy__TransferFailed();
+error Flippy__NotOwner();
+error Flippy__InsufficientFundsToSatisfyWithdrawal();
 
 contract Flippy {
     enum CoinFace {
@@ -14,27 +16,35 @@ contract Flippy {
 
     /* state vars */
     uint256 private immutable i_minimumBalance;
-    uint256 private immutable i_fee;
+    address private immutable i_owner;
+    // uint256 private immutable i_fee;
 
     /* Use maps as we plan on letting players verse eachother later on */
     mapping(address => uint256) private s_playersToBalances;
     mapping(address => CoinFace) private s_playersToCoinFaceSelection;
 
     event CoinFlipped(address indexed player, uint256 wager, CoinFace faceSelected, CoinFace faceFlipped, uint256 prize);
+    event Funded(address fromAddress, uint256 amount);
+    event Withdrew(uint256 amount);
 
-    constructor(uint256 minimumWager, uint256 fee) {
+    constructor(
+        address owner,
+        uint256 minimumWager,
+        uint256 /* fee */
+    ) {
+        i_owner = owner;
         i_minimumBalance = minimumWager;
-        i_fee = fee;
+        // i_fee = fee;
     }
 
     /**
      */
     function flipCoin(CoinFace playerCoinFaceSelection) public payable {
-        if (msg.value < i_minimumBalance) {
-            revert Flippy__InsufficientWager();
-        }
         if ((msg.value * 2) > address(this).balance) {
             revert Flippy__InsufficientContractFunds();
+        }
+        if (msg.value < i_minimumBalance) {
+            revert Flippy__InsufficientWager();
         }
         if (isAddressInBalances(msg.sender)) {
             revert Flippy_PlayerAlreadyInGame();
@@ -79,5 +89,30 @@ contract Flippy {
 
     function getMinimumWager() public view returns (uint256) {
         return i_minimumBalance;
+    }
+
+    function fund() public payable {
+        emit Funded(msg.sender, msg.value);
+    }
+
+    function withdrawAll() public payable onlyOwner {
+        uint256 amount = address(this).balance;
+        (bool success, ) = msg.sender.call{value: amount}("");
+        emit Withdrew(amount);
+    }
+
+    function withdraw(uint256 amount) public payable onlyOwner {
+        if (amount > address(this).balance) {
+            revert Flippy__InsufficientFundsToSatisfyWithdrawal();
+        }
+        (bool success, ) = msg.sender.call{value: amount}("");
+        emit Withdrew(amount);
+    }
+
+    modifier onlyOwner() {
+        if (msg.sender != i_owner) {
+            revert Flippy__NotOwner();
+        }
+        _;
     }
 }

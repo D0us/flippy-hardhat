@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Flippy.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.9;\n\nerror Flippy__InsufficientWager();\nerror Flippy__InsufficientContractFunds();\nerror Flippy_PlayerAlreadyInGame();\nerror Flippy__TransferFailed();\n\ncontract Flippy {\n    enum CoinFace {\n        HEADS,\n        TAILS\n    } // uint256 0 = HEADS, 1 = TAILS\n\n    /* state vars */\n    uint256 private immutable i_minimumBalance;\n    // uint256 private immutable i_fee;\n\n    /* Use maps as we plan on letting players verse eachother later on */\n    mapping(address => uint256) private s_playersToBalances;\n    mapping(address => CoinFace) private s_playersToCoinFaceSelection;\n\n    event CoinFlipped(address indexed player, uint256 wager, CoinFace faceSelected, CoinFace faceFlipped, uint256 prize);\n\n    constructor(\n        uint256 minimumWager,\n        uint256 /* fee */\n    ) {\n        i_minimumBalance = minimumWager;\n        // i_fee = fee;\n    }\n\n    /**\n     */\n    function flipCoin(CoinFace playerCoinFaceSelection) public payable {\n        if ((msg.value * 2) > address(this).balance) {\n            revert Flippy__InsufficientContractFunds();\n        }\n        if (msg.value < i_minimumBalance) {\n            revert Flippy__InsufficientWager();\n        }\n        if (isAddressInBalances(msg.sender)) {\n            revert Flippy_PlayerAlreadyInGame();\n        }\n\n        address playerAddress = payable(msg.sender);\n        uint256 wager = msg.value;\n        s_playersToCoinFaceSelection[playerAddress] = playerCoinFaceSelection;\n        s_playersToBalances[playerAddress] = wager;\n\n        CoinFace result = getFlipResult();\n        if (result == playerCoinFaceSelection) {\n            uint256 prize = (wager * 2);\n            (bool success, ) = playerAddress.call{value: prize}(\"\");\n            if (!success) {\n                //TODO: If it fails here we gobble up the funds as there is no way to reinitiate the flip\n                // Maybe split into into two functins - enter game and flip coin\n                revert Flippy__TransferFailed();\n            }\n            emit CoinFlipped(playerAddress, wager, playerCoinFaceSelection, result, prize);\n        } else {\n            emit CoinFlipped(playerAddress, wager, playerCoinFaceSelection, result, 0);\n        }\n        delete s_playersToBalances[playerAddress];\n        delete s_playersToCoinFaceSelection[playerAddress];\n    }\n\n    function getFlipResult() public pure returns (CoinFace) {\n        return CoinFace.HEADS;\n    }\n\n    /**\n     * @dev Check whether a player currently exists in the list of active balances\n     *\n     */\n    function isAddressInBalances(address playerAddress) public view returns (bool) {\n        if (s_playersToBalances[playerAddress] > 0) {\n            return true;\n        }\n        return false;\n    }\n\n    function getMinimumWager() public view returns (uint256) {\n        return i_minimumBalance;\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "minimumWager",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "Flippy_PlayerAlreadyInGame",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Flippy__InsufficientContractFunds",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Flippy__InsufficientWager",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Flippy__TransferFailed",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "player",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "wager",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum Flippy.CoinFace",
+          "name": "faceSelected",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum Flippy.CoinFace",
+          "name": "faceFlipped",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "prize",
+          "type": "uint256"
+        }
+      ],
+      "name": "CoinFlipped",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "enum Flippy.CoinFace",
+          "name": "playerCoinFaceSelection",
+          "type": "uint8"
+        }
+      ],
+      "name": "flipCoin",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getFlipResult",
+      "outputs": [
+        {
+          "internalType": "enum Flippy.CoinFace",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getMinimumWager",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "playerAddress",
+          "type": "address"
+        }
+      ],
+      "name": "isAddressInBalances",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xd182ac5d843a1d66ea14ce70e607cc9a35769292a023f1bf4eaf329ef00a5155",
+  "receipt": {
+    "to": null,
+    "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    "transactionIndex": 0,
+    "gasUsed": "543553",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xea3e8c19ebc57a29d21055d0d658336b493fe5820d49ebad80e47a59d5b10256",
+    "transactionHash": "0xd182ac5d843a1d66ea14ce70e607cc9a35769292a023f1bf4eaf329ef00a5155",
+    "logs": [],
+    "blockNumber": 1,
+    "cumulativeGasUsed": "543553",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "100000000000000000",
+    0
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "dba25dbe2e81599f35fba19ac87a0178",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"minimumWager\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"Flippy_PlayerAlreadyInGame\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Flippy__InsufficientContractFunds\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Flippy__InsufficientWager\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Flippy__TransferFailed\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"player\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"wager\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"enum Flippy.CoinFace\",\"name\":\"faceSelected\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"enum Flippy.CoinFace\",\"name\":\"faceFlipped\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"prize\",\"type\":\"uint256\"}],\"name\":\"CoinFlipped\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"enum Flippy.CoinFace\",\"name\":\"playerCoinFaceSelection\",\"type\":\"uint8\"}],\"name\":\"flipCoin\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getFlipResult\",\"outputs\":[{\"internalType\":\"enum Flippy.CoinFace\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getMinimumWager\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"playerAddress\",\"type\":\"address\"}],\"name\":\"isAddressInBalances\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"isAddressInBalances(address)\":{\"details\":\"Check whether a player currently exists in the list of active balances\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Flippy.sol\":\"Flippy\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/Flippy.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.9;\\n\\nerror Flippy__InsufficientWager();\\nerror Flippy__InsufficientContractFunds();\\nerror Flippy_PlayerAlreadyInGame();\\nerror Flippy__TransferFailed();\\n\\ncontract Flippy {\\n    enum CoinFace {\\n        HEADS,\\n        TAILS\\n    } // uint256 0 = HEADS, 1 = TAILS\\n\\n    /* state vars */\\n    uint256 private immutable i_minimumBalance;\\n    // uint256 private immutable i_fee;\\n\\n    /* Use maps as we plan on letting players verse eachother later on */\\n    mapping(address => uint256) private s_playersToBalances;\\n    mapping(address => CoinFace) private s_playersToCoinFaceSelection;\\n\\n    event CoinFlipped(address indexed player, uint256 wager, CoinFace faceSelected, CoinFace faceFlipped, uint256 prize);\\n\\n    constructor(\\n        uint256 minimumWager,\\n        uint256 /* fee */\\n    ) {\\n        i_minimumBalance = minimumWager;\\n        // i_fee = fee;\\n    }\\n\\n    /**\\n     */\\n    function flipCoin(CoinFace playerCoinFaceSelection) public payable {\\n        if ((msg.value * 2) > address(this).balance) {\\n            revert Flippy__InsufficientContractFunds();\\n        }\\n        if (msg.value < i_minimumBalance) {\\n            revert Flippy__InsufficientWager();\\n        }\\n        if (isAddressInBalances(msg.sender)) {\\n            revert Flippy_PlayerAlreadyInGame();\\n        }\\n\\n        address playerAddress = payable(msg.sender);\\n        uint256 wager = msg.value;\\n        s_playersToCoinFaceSelection[playerAddress] = playerCoinFaceSelection;\\n        s_playersToBalances[playerAddress] = wager;\\n\\n        CoinFace result = getFlipResult();\\n        if (result == playerCoinFaceSelection) {\\n            uint256 prize = (wager * 2);\\n            (bool success, ) = playerAddress.call{value: prize}(\\\"\\\");\\n            if (!success) {\\n                //TODO: If it fails here we gobble up the funds as there is no way to reinitiate the flip\\n                // Maybe split into into two functins - enter game and flip coin\\n                revert Flippy__TransferFailed();\\n            }\\n            emit CoinFlipped(playerAddress, wager, playerCoinFaceSelection, result, prize);\\n        } else {\\n            emit CoinFlipped(playerAddress, wager, playerCoinFaceSelection, result, 0);\\n        }\\n        delete s_playersToBalances[playerAddress];\\n        delete s_playersToCoinFaceSelection[playerAddress];\\n    }\\n\\n    function getFlipResult() public pure returns (CoinFace) {\\n        return CoinFace.HEADS;\\n    }\\n\\n    /**\\n     * @dev Check whether a player currently exists in the list of active balances\\n     *\\n     */\\n    function isAddressInBalances(address playerAddress) public view returns (bool) {\\n        if (s_playersToBalances[playerAddress] > 0) {\\n            return true;\\n        }\\n        return false;\\n    }\\n\\n    function getMinimumWager() public view returns (uint256) {\\n        return i_minimumBalance;\\n    }\\n}\\n\",\"keccak256\":\"0x88ba7b0f22c49b1c5e130165c83ef18f5e6dc5831d657b43b7220535651aeb15\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60a060405234801561001057600080fd5b506040516109ba3803806109ba8339818101604052810190610032919061007c565b816080818152505050506100bc565b600080fd5b6000819050919050565b61005981610046565b811461006457600080fd5b50565b60008151905061007681610050565b92915050565b6000806040838503121561009357610092610041565b5b60006100a185828601610067565b92505060206100b285828601610067565b9150509250929050565b6080516108dc6100de60003960008181610140015261051e01526108dc6000f3fe60806040526004361061003f5760003560e01c806350fa12c7146100445780636afa82ea1461006f578063e07c73e71461008b578063f48409e9146100c8575b600080fd5b34801561005057600080fd5b506100596100f3565b60405161006691906105b9565b60405180910390f35b610089600480360381019061008491906105fe565b6100f8565b005b34801561009757600080fd5b506100b260048036038101906100ad9190610689565b6104bf565b6040516100bf91906106d1565b60405180910390f35b3480156100d457600080fd5b506100dd61051a565b6040516100ea9190610705565b60405180910390f35b600090565b47600234610106919061074f565b111561013e576040517fa01e60eb00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b7f0000000000000000000000000000000000000000000000000000000000000000341015610198576040517fb315dd1700000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6101a1336104bf565b156101d8576040517fab07e46400000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6000339050600034905082600160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083600181111561024457610243610542565b5b0217905550806000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000208190555060006102966100f3565b90508360018111156102ab576102aa610542565b5b8160018111156102be576102bd610542565b5b036103d25760006002836102d2919061074f565b905060008473ffffffffffffffffffffffffffffffffffffffff16826040516102fa906107c2565b60006040518083038185875af1925050503d8060008114610337576040519150601f19603f3d011682016040523d82523d6000602084013e61033c565b606091505b5050905080610377576040517fd7d1d7df00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8473ffffffffffffffffffffffffffffffffffffffff167f1070a358267b3c26271e1f9b8e8c4d095432b7e032a37c4b59f45685c7e36b8e858886866040516103c394939291906107d7565b60405180910390a25050610428565b8273ffffffffffffffffffffffffffffffffffffffff167f1070a358267b3c26271e1f9b8e8c4d095432b7e032a37c4b59f45685c7e36b8e838684600060405161041f9493929190610861565b60405180910390a25b6000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009055600160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81549060ff021916905550505050565b6000806000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205411156105105760019050610515565b600090505b919050565b60007f0000000000000000000000000000000000000000000000000000000000000000905090565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052602160045260246000fd5b6002811061058257610581610542565b5b50565b600081905061059382610571565b919050565b60006105a382610585565b9050919050565b6105b381610598565b82525050565b60006020820190506105ce60008301846105aa565b92915050565b600080fd5b600281106105e657600080fd5b50565b6000813590506105f8816105d9565b92915050565b600060208284031215610614576106136105d4565b5b6000610622848285016105e9565b91505092915050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006106568261062b565b9050919050565b6106668161064b565b811461067157600080fd5b50565b6000813590506106838161065d565b92915050565b60006020828403121561069f5761069e6105d4565b5b60006106ad84828501610674565b91505092915050565b60008115159050919050565b6106cb816106b6565b82525050565b60006020820190506106e660008301846106c2565b92915050565b6000819050919050565b6106ff816106ec565b82525050565b600060208201905061071a60008301846106f6565b92915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b600061075a826106ec565b9150610765836106ec565b9250828202610773816106ec565b9150828204841483151761078a57610789610720565b5b5092915050565b600081905092915050565b50565b60006107ac600083610791565b91506107b78261079c565b600082019050919050565b60006107cd8261079f565b9150819050919050565b60006080820190506107ec60008301876106f6565b6107f960208301866105aa565b61080660408301856105aa565b61081360608301846106f6565b95945050505050565b6000819050919050565b6000819050919050565b600061084b6108466108418461081c565b610826565b6106ec565b9050919050565b61085b81610830565b82525050565b600060808201905061087660008301876106f6565b61088360208301866105aa565b61089060408301856105aa565b61089d6060830184610852565b9594505050505056fea2646970667358221220812f777418b569a0b96a2b4ec5eb74d35f443049d3a71fa85b975d5e7166a49d64736f6c63430008110033",
+  "deployedBytecode": "0x60806040526004361061003f5760003560e01c806350fa12c7146100445780636afa82ea1461006f578063e07c73e71461008b578063f48409e9146100c8575b600080fd5b34801561005057600080fd5b506100596100f3565b60405161006691906105b9565b60405180910390f35b610089600480360381019061008491906105fe565b6100f8565b005b34801561009757600080fd5b506100b260048036038101906100ad9190610689565b6104bf565b6040516100bf91906106d1565b60405180910390f35b3480156100d457600080fd5b506100dd61051a565b6040516100ea9190610705565b60405180910390f35b600090565b47600234610106919061074f565b111561013e576040517fa01e60eb00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b7f0000000000000000000000000000000000000000000000000000000000000000341015610198576040517fb315dd1700000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6101a1336104bf565b156101d8576040517fab07e46400000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6000339050600034905082600160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083600181111561024457610243610542565b5b0217905550806000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000208190555060006102966100f3565b90508360018111156102ab576102aa610542565b5b8160018111156102be576102bd610542565b5b036103d25760006002836102d2919061074f565b905060008473ffffffffffffffffffffffffffffffffffffffff16826040516102fa906107c2565b60006040518083038185875af1925050503d8060008114610337576040519150601f19603f3d011682016040523d82523d6000602084013e61033c565b606091505b5050905080610377576040517fd7d1d7df00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8473ffffffffffffffffffffffffffffffffffffffff167f1070a358267b3c26271e1f9b8e8c4d095432b7e032a37c4b59f45685c7e36b8e858886866040516103c394939291906107d7565b60405180910390a25050610428565b8273ffffffffffffffffffffffffffffffffffffffff167f1070a358267b3c26271e1f9b8e8c4d095432b7e032a37c4b59f45685c7e36b8e838684600060405161041f9493929190610861565b60405180910390a25b6000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009055600160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81549060ff021916905550505050565b6000806000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205411156105105760019050610515565b600090505b919050565b60007f0000000000000000000000000000000000000000000000000000000000000000905090565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052602160045260246000fd5b6002811061058257610581610542565b5b50565b600081905061059382610571565b919050565b60006105a382610585565b9050919050565b6105b381610598565b82525050565b60006020820190506105ce60008301846105aa565b92915050565b600080fd5b600281106105e657600080fd5b50565b6000813590506105f8816105d9565b92915050565b600060208284031215610614576106136105d4565b5b6000610622848285016105e9565b91505092915050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006106568261062b565b9050919050565b6106668161064b565b811461067157600080fd5b50565b6000813590506106838161065d565b92915050565b60006020828403121561069f5761069e6105d4565b5b60006106ad84828501610674565b91505092915050565b60008115159050919050565b6106cb816106b6565b82525050565b60006020820190506106e660008301846106c2565b92915050565b6000819050919050565b6106ff816106ec565b82525050565b600060208201905061071a60008301846106f6565b92915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b600061075a826106ec565b9150610765836106ec565b9250828202610773816106ec565b9150828204841483151761078a57610789610720565b5b5092915050565b600081905092915050565b50565b60006107ac600083610791565b91506107b78261079c565b600082019050919050565b60006107cd8261079f565b9150819050919050565b60006080820190506107ec60008301876106f6565b6107f960208301866105aa565b61080660408301856105aa565b61081360608301846106f6565b95945050505050565b6000819050919050565b6000819050919050565b600061084b6108466108418461081c565b610826565b6106ec565b9050919050565b61085b81610830565b82525050565b600060808201905061087660008301876106f6565b61088360208301866105aa565b61089060408301856105aa565b61089d6060830184610852565b9594505050505056fea2646970667358221220812f777418b569a0b96a2b4ec5eb74d35f443049d3a71fa85b975d5e7166a49d64736f6c63430008110033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "isAddressInBalances(address)": {
+        "details": "Check whether a player currently exists in the list of active balances"
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 18,
+        "contract": "contracts/Flippy.sol:Flippy",
+        "label": "s_playersToBalances",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_address,t_uint256)"
+      },
+      {
+        "astId": 23,
+        "contract": "contracts/Flippy.sol:Flippy",
+        "label": "s_playersToCoinFaceSelection",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_enum(CoinFace)12)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_enum(CoinFace)12": {
+        "encoding": "inplace",
+        "label": "enum Flippy.CoinFace",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_enum(CoinFace)12)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => enum Flippy.CoinFace)",
+        "numberOfBytes": "32",
+        "value": "t_enum(CoinFace)12"
+      },
+      "t_mapping(t_address,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
