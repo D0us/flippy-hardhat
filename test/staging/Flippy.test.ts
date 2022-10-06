@@ -34,6 +34,7 @@ if (developmentChains.includes(network.name)) {
                 await flippy.fund({ value: ethers.utils.parseEther("10") })
                 accounts = await ethers.getSigners()
             })
+
             it("Rejects a wager that is lower than the minimum", async () => {
                 const playerConnectedFlippy = flippy.connect(accounts[1])
                 const coinFaceSelection = 0 //heads
