@@ -2,6 +2,7 @@ import { DeployFunction } from "hardhat-deploy/types"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { verify } from "../utils/verify"
 import { developmentChains, networkConfig } from "../helper-hardhat-config"
+import { getContractFactory } from "@nomiclabs/hardhat-ethers/types"
 
 const deployRaffle = async (hre: HardhatRuntimeEnvironment) => {
     const { deployments, getNamedAccounts, network, ethers } = hre
@@ -28,6 +29,10 @@ const deployRaffle = async (hre: HardhatRuntimeEnvironment) => {
         log: true,
         waitConfirmations: 1,
     })
+
+    // Fund the contract
+    const flippyDeployerConnected = await ethers.getContract("Flippy", deployer)
+    await flippyDeployerConnected.fund({ value: ethers.utils.parseEther("100") })
 
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         log("Verifying...")
