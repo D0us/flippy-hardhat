@@ -45,7 +45,7 @@ if (developmentChains.includes(network.name)) {
                 )
             })
 
-            it("Sends money when flip is won", async () => {
+            it("Emits the CoinFlipped event on flip", async () => {
                 const playerConnectedFlippy = flippy.connect(accounts[1])
                 const coinFaceSelection = 0 //heads
                 const wager = minimumWager.mul(3)

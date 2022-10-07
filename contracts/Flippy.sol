@@ -1,12 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
+import "hardhat/console.sol";
+
 error Flippy__InsufficientWager();
 error Flippy__InsufficientContractFunds();
 error Flippy_PlayerAlreadyInGame();
 error Flippy__TransferFailed();
 error Flippy__NotOwner();
 error Flippy__InsufficientFundsToSatisfyWithdrawal();
+error Flippy__OwnerCouldNotWithdraw();
 
 contract Flippy {
     enum CoinFace {
@@ -14,10 +17,19 @@ contract Flippy {
         TAILS
     } // uint256 0 = HEADS, 1 = TAILS
 
+    struct Game {
+        address player;
+        uint256 wager;
+        CoinFace faceSelected;
+        CoinFace faceFlipped;
+        uint256 prize;
+    }
+
     /* state vars */
     uint256 private immutable i_minimumBalance;
     address private immutable i_owner;
-    // uint256 private immutable i_fee;
+    Game[] public s_games;
+    uint256 private immutable i_feePercentage;
 
     /* Use maps as we plan on letting players verse eachother later on */
     mapping(address => uint256) private s_playersToBalances;
@@ -30,11 +42,11 @@ contract Flippy {
     constructor(
         address owner,
         uint256 minimumWager,
-        uint256 /* fee */
+        uint256 feePercentage
     ) {
         i_owner = owner;
         i_minimumBalance = minimumWager;
-        // i_fee = fee;
+        i_feePercentage = feePercentage;
     }
 
     /**
@@ -65,8 +77,10 @@ contract Flippy {
                 revert Flippy__TransferFailed();
             }
             emit CoinFlipped(playerAddress, wager, playerCoinFaceSelection, result, prize);
+            s_games.push(Game(playerAddress, wager, playerCoinFaceSelection, result, prize));
         } else {
             emit CoinFlipped(playerAddress, wager, playerCoinFaceSelection, result, 0);
+            s_games.push(Game(playerAddress, wager, playerCoinFaceSelection, result, 0));
         }
         delete s_playersToBalances[playerAddress];
         delete s_playersToCoinFaceSelection[playerAddress];
@@ -91,6 +105,24 @@ contract Flippy {
         return i_minimumBalance;
     }
 
+    function getGameCount() public view returns (uint256) {
+        return s_games.length;
+    }
+
+    function getGame(uint256 index)
+        public
+        view
+        returns (
+            address player,
+            uint256 wager,
+            CoinFace faceSelected,
+            CoinFace faceFlipped,
+            uint256 prize
+        )
+    {
+        return (s_games[index].player, s_games[index].wager, s_games[index].faceSelected, s_games[index].faceFlipped, s_games[index].prize);
+    }
+
     function fund() public payable {
         emit Funded(msg.sender, msg.value);
     }
@@ -98,6 +130,9 @@ contract Flippy {
     function withdrawAll() public payable onlyOwner {
         uint256 amount = address(this).balance;
         (bool success, ) = msg.sender.call{value: amount}("");
+        if (!success) {
+            revert Flippy__OwnerCouldNotWithdraw();
+        }
         emit Withdrew(amount);
     }
 
@@ -106,6 +141,9 @@ contract Flippy {
             revert Flippy__InsufficientFundsToSatisfyWithdrawal();
         }
         (bool success, ) = msg.sender.call{value: amount}("");
+        if (!success) {
+            revert Flippy__OwnerCouldNotWithdraw();
+        }
         emit Withdrew(amount);
     }
 
@@ -114,5 +152,13 @@ contract Flippy {
             revert Flippy__NotOwner();
         }
         _;
+    }
+
+    fallback() external payable {
+        fund();
+    }
+
+    receive() external payable {
+        fund();
     }
 }

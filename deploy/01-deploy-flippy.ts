@@ -14,12 +14,7 @@ const deployRaffle = async (hre: HardhatRuntimeEnvironment) => {
         chainId = 31337
     }
 
-    const args = [
-        deployer,
-        networkConfig[chainId]["minimumWager"],
-        0x00,
-        // networkConfig[chainId]["fee"]
-    ]
+    const args = [deployer, networkConfig[chainId]["minimumWager"], networkConfig[chainId]["feePercentage"]]
 
     console.log(`deploying to ${network.name}`)
 
